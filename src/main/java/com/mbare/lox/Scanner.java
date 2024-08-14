@@ -88,6 +88,13 @@ public class Scanner {
                 if (match('/')) {
                     // A comment goes until the end of the line.
                     while (peek() != '\n' && !isAtEnd()) advance();
+                } else if (match('*')) {
+                    while (peekNext() != '/') advance();
+                    if (peek() == '*' && peekNext() == '/') {
+                        current += 2;
+                    } else {
+                        Lox.error(line, "Unclosed multiline comment.");
+                    }
                 } else {
                     addToken(TokenType.SLASH);
                 }
@@ -127,8 +134,8 @@ public class Scanner {
         // Look for a fractional part.
         if (peek() == '.' && isDigit(peekNext())) {
             // Consume the "."
-            advance();
-            while (isDigit(peek())) advance();
+            do advance();
+            while (isDigit(peek()));
         }
         addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
     }

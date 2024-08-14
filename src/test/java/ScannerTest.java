@@ -79,4 +79,12 @@ public class ScannerTest {
         assertEquals(1, tokens.size());
         assertEquals(TokenType.EOF, tokens.get(0).type);
     }
+
+    @Test
+    public void scanTokens_multiLineComment_ignore() {
+        Scanner scanner = new Scanner("/* \n Ciao */");
+        List<Token> tokens = scanner.scanTokens();
+        assertEquals(1, tokens.size());
+        assertEquals(TokenType.EOF, tokens.getFirst().type);
+    }
 }
