@@ -49,7 +49,7 @@
                         <addClasspath>true</addClasspath>
                         <!-- Specifies that all dependencies of our application are found -->
                         <!-- Configures the main class of the application -->
-                        <mainClass>com.mbare.lox.Lox</mainClass>
+                        <mainClass>com.bezkup.mbare.Lox</mainClass>
                     </manifest>
                 </archive>
             </configuration>

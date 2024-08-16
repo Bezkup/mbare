@@ -1,6 +1,6 @@
-import com.mbare.lox.Scanner;
-import com.mbare.lox.Token;
-import com.mbare.lox.TokenType;
+import com.bezkup.mbare.Scanner;
+import com.bezkup.mbare.Token;
+import com.bezkup.mbare.TokenType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

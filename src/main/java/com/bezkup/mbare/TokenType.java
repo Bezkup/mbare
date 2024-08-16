@@ -1,4 +1,4 @@
-package com.mbare.lox;
+package com.bezkup.mbare;
 
 public enum TokenType {
     // Single-character tokens.

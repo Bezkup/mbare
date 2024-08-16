@@ -1,4 +1,4 @@
-package com.mbare.lox;
+package com.bezkup.mbare;
 
 import java.io.BufferedReader;
 import java.io.IOException;

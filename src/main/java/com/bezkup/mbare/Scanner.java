@@ -1,4 +1,4 @@
-package com.mbare.lox;
+package com.bezkup.mbare;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -127,8 +127,8 @@ public class Scanner {
         // Look for a fractional part.
         if (peek() == '.' && isDigit(peekNext())) {
             // Consume the "."
-            advance();
-            while (isDigit(peek())) advance();
+            do advance();
+            while (isDigit(peek()));
         }
         addToken(TokenType.NUMBER, Double.parseDouble(source.substring(start, current)));
     }
