@@ -8,12 +8,13 @@ public abstract class Expr {
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
     R visitUnaryExpr(Unary expr);
+    R visitCommaExpr(Comma expr);
   }
   public static class Binary extends Expr {
     Binary(Expr left, Token operator, Expr right) {
-      this.left = left;
-      this.operator = operator;
-      this.right = right;
+    this.left = left;
+    this.operator = operator;
+    this.right = right;
     }
 
     @Override
@@ -21,13 +22,13 @@ public abstract class Expr {
         return visitor.visitBinaryExpr(this);
     }
 
-    public final Expr left;
-    public final Token operator;
-    public final Expr right;
+    final Expr left;
+    final Token operator;
+    final Expr right;
   }
   public static class Grouping extends Expr {
     Grouping(Expr expression) {
-      this.expression = expression;
+    this.expression = expression;
     }
 
     @Override
@@ -35,7 +36,7 @@ public abstract class Expr {
         return visitor.visitGroupingExpr(this);
     }
 
-    public final Expr expression;
+    final Expr expression;
   }
   public static class Literal extends Expr {
     Literal(Object value) {
@@ -47,7 +48,7 @@ public abstract class Expr {
         return visitor.visitLiteralExpr(this);
     }
 
-    public final Object value;
+    final Object value;
   }
   public static class Unary extends Expr {
     Unary(Token operator, Expr right) {
@@ -60,8 +61,22 @@ public abstract class Expr {
         return visitor.visitUnaryExpr(this);
     }
 
-    public final Token operator;
-    public final Expr right;
+    final Token operator;
+    final Expr right;
+  }
+  public static class Comma extends Expr {
+    Comma(Expr left, Expr right) {
+    this.left = left;
+    this.right = right;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+        return visitor.visitCommaExpr(this);
+    }
+
+    final Expr left;
+    final Expr right;
   }
 
    abstract <R> R accept(Visitor<R> visitor);

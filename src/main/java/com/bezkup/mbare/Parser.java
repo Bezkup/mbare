@@ -22,7 +22,16 @@ public class Parser {
     }
 
     private Expr expression() {
-        return equality();
+        return comma();
+    }
+
+    private Expr comma() {
+        Expr expr = equality();
+        while (match(COMMA)) {
+            Expr right = equality();
+            expr = new Expr.Comma(expr, right);
+        }
+        return expr;
     }
 
     private Expr equality() {
