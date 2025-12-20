@@ -1,0 +1,8 @@
+// Test 2: If/Else with Sicilian keywords
+variabbili x = 10;
+
+su (x > 5) {
+    stampa "Grande";
+} sannunca {
+    stampa "Nicu";
+}

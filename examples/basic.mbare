@@ -1,0 +1,42 @@
+// Mbare Example Program
+// Using Sicilian keywords
+
+// Boolean literals
+veru
+falsu
+nenti
+
+// Arithmetic expressions
+1 + 2
+3 - 1
+4 * 5
+20 / 4
+
+// Complex arithmetic
+(10 + 5) * 2
+100 / (5 * 2)
+1 + 2 * 3
+(1 + 2) * 3
+
+// Comparison operators
+5 > 3
+2 < 10
+5 >= 5
+3 <= 3
+
+// Equality
+42 == 42
+10 != 5
+
+// Logical NOT
+!veru
+!falsu
+!!veru
+
+// String operations
+"Ciao"
+"Sicilia"
+"Bon" + "jornu"
+
+// Nested expressions
+((1 + 2) * (3 + 4)) / 7

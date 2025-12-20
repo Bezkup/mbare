@@ -1,0 +1,19 @@
+// Fibonacci sequence - PROVES TURING COMPLETENESS!
+// This demonstrates: variables + loops = Turing complete
+
+variabbili a = 0;
+variabbili b = 1;
+variabbili n = 10;
+variabbili i = 0;
+
+stampa "Fibonacci in Sicilianu:";
+
+mentri (i < n) {
+    stampa a;
+    variabbili temp = a + b;
+    a = b;
+    b = temp;
+    i = i + 1;
+}
+
+stampa "Fattu!";

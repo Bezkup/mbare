@@ -4,16 +4,33 @@ import java.util.List;
 
 public abstract class Expr {
     interface Visitor<R> {
+    R visitAssignExpr(Assign expr);
     R visitBinaryExpr(Binary expr);
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
+    R visitLogicalExpr(Logical expr);
     R visitUnaryExpr(Unary expr);
+    R visitVariableExpr(Variable expr);
+  }
+  public static class Assign extends Expr {
+    Assign(Token name, Expr value) {
+    this.name = name;
+    this.value = value;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+        return visitor.visitAssignExpr(this);
+    }
+
+    public final Token name;
+    public final Expr value;
   }
   public static class Binary extends Expr {
     Binary(Expr left, Token operator, Expr right) {
-      this.left = left;
-      this.operator = operator;
-      this.right = right;
+    this.left = left;
+    this.operator = operator;
+    this.right = right;
     }
 
     @Override
@@ -27,7 +44,7 @@ public abstract class Expr {
   }
   public static class Grouping extends Expr {
     Grouping(Expr expression) {
-      this.expression = expression;
+    this.expression = expression;
     }
 
     @Override
@@ -49,6 +66,22 @@ public abstract class Expr {
 
     public final Object value;
   }
+  public static class Logical extends Expr {
+    Logical(Expr left, Token operator, Expr right) {
+    this.left = left;
+    this.operator = operator;
+    this.right = right;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+        return visitor.visitLogicalExpr(this);
+    }
+
+    public final Expr left;
+    public final Token operator;
+    public final Expr right;
+  }
   public static class Unary extends Expr {
     Unary(Token operator, Expr right) {
     this.operator = operator;
@@ -62,6 +95,18 @@ public abstract class Expr {
 
     public final Token operator;
     public final Expr right;
+  }
+  public static class Variable extends Expr {
+    Variable(Token name) {
+    this.name = name;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+        return visitor.visitVariableExpr(this);
+    }
+
+    public final Token name;
   }
 
    abstract <R> R accept(Visitor<R> visitor);

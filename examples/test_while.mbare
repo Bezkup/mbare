@@ -1,0 +1,9 @@
+// Test 3: While loop - proves Turing completeness!
+variabbili i = 0;
+
+mentri (i < 5) {
+    stampa i;
+    i = i + 1;
+}
+
+stampa "Fattu!";
