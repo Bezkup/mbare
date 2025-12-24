@@ -56,7 +56,7 @@ public class Scanner {
 
         // Unterminated string.
         if (isAtEnd()) {
-            Lox.error(line, "Unterminated string.");
+            Mbare.error(line, "Unterminated string.");
             return;
         }
 
@@ -139,7 +139,7 @@ public class Scanner {
                 } else if (isAlpha(c)) {
                     identifier();
                 } else {
-                    Lox.error(line, "Unexpected character.");
+                    Mbare.error(line, "Unexpected character.");
                 }
                 break;
         }
@@ -195,7 +195,7 @@ public class Scanner {
     }
 
     private boolean isAlpha(char c) {
-        return (c >= 'a' && c < 'z') || (c > 'A' && c <= 'Z') || c == '_';
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
     }
 
     private boolean isDigit(char c) {

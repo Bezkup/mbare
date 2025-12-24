@@ -88,12 +88,12 @@ classi Persona {             // Class definition
 
 ### REPL
 ```bash
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare
 ```
 
 ### Execute File
 ```bash
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox file.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare file.mbare
 ```
 
 ## Common Sicilian Phrases in Code

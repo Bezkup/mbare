@@ -1,6 +1,7 @@
-variabbili x = 10;
-stampa x;
-su (x > 5) { stampa "Grande!"; }
-variabbili i = 0;
-mentri (i < 3) { stampa i; i = i + 1; }
-stampa "Mbare è Turing complete!";
+variabbili x = 10
+stampa(x)
+su (x > 5) { stampa("Grande!") }
+variabbili i = 0
+mentri (i < 3) { stampa(i); i = i + 1 }
+stampa("Mbare è Turing complete!")
+

@@ -43,7 +43,8 @@ public class Parser {
             initializer = expression();
         }
 
-        consume(SEMICOLON, "Expect ';' after variable declaration.");
+        // Consume optional semicolon
+        match(SEMICOLON);
         return new Stmt.Var(name, initializer);
     }
 
@@ -57,13 +58,17 @@ public class Parser {
         if (match(LEFT_BRACE))
             return new Stmt.Block(block());
 
+        // Skip optional semicolons (empty statements)
+        if (match(SEMICOLON))
+            return statement();
+
         return expressionStatement();
     }
 
     private Stmt ifStatement() {
         consume(LEFT_PAREN, "Expect '(' after 'su'.");
         Expr condition = expression();
-        consume(RIGHT_PAREN, "Expect ')' after if condition.");
+        consume(RIGHT_PAREN, "Expect ')' after su condition.");
 
         Stmt thenBranch = statement();
         Stmt elseBranch = null;
@@ -76,7 +81,8 @@ public class Parser {
 
     private Stmt printStatement() {
         Expr value = expression();
-        consume(SEMICOLON, "Expect ';' after value.");
+        // Consume optional semicolon
+        match(SEMICOLON);
         return new Stmt.Print(value);
     }
 
@@ -102,7 +108,8 @@ public class Parser {
 
     private Stmt expressionStatement() {
         Expr expr = expression();
-        consume(SEMICOLON, "Expect ';' after expression.");
+        // Consume optional semicolon
+        match(SEMICOLON);
         return new Stmt.Expression(expr);
     }
 
@@ -244,16 +251,18 @@ public class Parser {
     }
 
     private ParseError error(Token token, String message) {
-        Lox.error(token, message);
+        Mbare.error(token, message);
         return new ParseError();
     }
 
     private void synchronize() {
         advance();
         while (!isAtEnd()) {
+            // Optionally consume semicolons if present (for backward compatibility)
             if (previous().type == SEMICOLON)
                 return;
 
+            // Synchronize at statement boundaries (newlines handled by next statement keyword)
             switch (peek().type) {
                 case CLASS:
                 case FUN:

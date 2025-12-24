@@ -2,6 +2,13 @@
 
 **Mbare** is a **Turing-complete** programming language that uses **Sicilian** keywords instead of English. It's based on the Lox language from "Crafting Interpreters" but with a Southern Italian twist!
 
+## ✨ Features
+
+- 🎉 **Turing Complete** - Can compute anything that's computable
+- 🇮🇹 **Sicilian Keywords** - Programming in Southern Italian
+- 🚀 **Kotlin-Style Syntax** - Optional semicolons, just like Kotlin!
+- 🔄 **Backward Compatible** - Old code with semicolons still works
+
 ## 🎉 Turing Complete!
 
 Mbare is officially Turing complete, meaning it can compute anything that's computable! It supports:
@@ -9,6 +16,24 @@ Mbare is officially Turing complete, meaning it can compute anything that's comp
 - ✅ Control flow (if/else, while loops)
 - ✅ Logical operators
 - ✅ Arbitrary computation
+
+## 🚀 Kotlin-Style Syntax 
+
+**Semicolons are now optional!** Write cleaner code, just like Kotlin:
+
+```javascript
+// Modern Kotlin-style (no semicolons)
+variabbili a = 0
+variabbili b = 1
+
+stampa "Fibonacci:"
+mentri (i < 10) {
+    stampa a
+    variabbili temp = a + b
+    a = b
+    b = temp
+}
+```
 
 ## Sicilian Keywords
 
@@ -48,22 +73,24 @@ mvn package
 ### Interactive Mode (REPL)
 
 ```bash
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare
 ```
 
 Then type statements:
 ```javascript
-> variabbili x = 10;
-> stampa x;
+> variabbili x = 10
+> stampa x
 10
-> si (x > 5) { stampa "Grande!"; }
+> su (x > 5) { stampa "Grande!" }
 Grande!
 ```
+
+**Note:** Semicolons are optional but can still be used if you prefer.
 
 ### Running a Script File
 
 ```bash
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox yourfile.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare yourfile.mbare
 ```
 
 ## Examples
@@ -71,31 +98,31 @@ java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox yourfile.mbare
 ### Variables and Print
 
 ```javascript
-variabbili a = 5;
-variabbili b = 10;
-stampa a + b;  // 15
+variabbili a = 5
+variabbili b = 10
+stampa a + b  // 15
 ```
 
 ### Control Flow
 
 ```javascript
-variabbili x = 10;
+variabbili x = 10
 
-si (x > 5) {
-    stampa "Grande";
-} senno {
-    stampa "Nicu";
+su (x > 5) {
+    stampa "Grande"
+} sannunca {
+    stampa "Nicu"
 }
 ```
 
 ### While Loops
 
 ```javascript
-variabbili i = 0;
+variabbili i = 0
 
 mentri (i < 5) {
-    stampa i;
-    i = i + 1;
+    stampa i
+    i = i + 1
 }
 ```
 
@@ -191,19 +218,19 @@ This means mbare can theoretically compute anything that's computable!
 Run example programs:
 ```bash
 # Variables
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox examples/test_variables.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare examples/test_variables.mbare
 
 # Control flow
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox examples/test_if.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare examples/test_if.mbare
 
 # Loops
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox examples/test_while.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare examples/test_while.mbare
 
 # Fibonacci (Turing completeness proof)
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox examples/fibonacci.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare examples/fibonacci.mbare
 
 # Logical operators
-java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Lox examples/test_logical.mbare
+java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare examples/test_logical.mbare
 ```
 
 ## Language Philosophy
