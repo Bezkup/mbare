@@ -1,13 +1,13 @@
 // Test logical operators (e = and, o = or)
-variabbili x = 5;
-variabbili y = 10;
+variabbili x = 5
+variabbili y = 10
 
 su (x > 0 e y > 0) {
-    stampa "Tutti dui positivi";
+    stampa("Tutti dui positivi")
 }
 
 su (x < 0 o y < 0) {
-    stampa "Almenu unu negativu";
+    stampa("Almenu unu negativu")
 } sannunca {
-    stampa "Nenti negativu";
+    stampa("Nenti negativu")
 }

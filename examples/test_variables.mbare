@@ -1,4 +1,4 @@
 // Test 1: Variables with Sicilian keywords
-variabbili a = 5;
-variabbili b = 10;
-stampa a + b;
+variabbili a = 5
+variabbili b = 10
+stampa(a + b)
