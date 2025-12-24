@@ -56,18 +56,6 @@ o   // OR (keyword defined, not yet implemented)
 ## Future Keywords (Not Yet Implemented)
 
 ```javascript
-variabbili x = 10;           // Variable declaration
-stampa x;                    // Print statement
-
-si (condition) {             // If statement
-    // code
-} senno {                    // Else clause
-    // code
-}
-
-mentri (condition) {         // While loop
-    // code
-}
 
 pi (variabbili i = 0; i < 10; i = i + 1) {  // For loop
     // code
