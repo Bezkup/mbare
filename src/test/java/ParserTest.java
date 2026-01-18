@@ -145,7 +145,7 @@ class ParserTest {
         @Test
         @DisplayName("Parse logical expression")
         void testParseLogicalExpression() {
-            List<Stmt> statements = parse("stampa veru e falsu");
+            List<Stmt> statements = parse("stampa veru e macari falsu");
             assertNotNull(statements);
             assertEquals(1, statements.size());
         }

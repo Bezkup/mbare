@@ -43,17 +43,17 @@ Here are all the keywords in Mbare and their English equivalents:
 |----------|---------|-------|--------|
 | `variabbili` | `var` | Variable declaration | ✅ Working |
 | `stampa` | `print` | Print statement | ✅ Working |
-| `si` | `if` | If statement | ✅ Working |
-| `senno` | `else` | Else clause | ✅ Working |
+| `su` | `if` | If statement | ✅ Working |
+| `sannunca` | `else` | Else clause | ✅ Working |
 | `mentri` | `while` | While loop | ✅ Working |
-| `e` | `and` | Logical AND | ✅ Working |
+| `e macari` / `macari` | `and` | Logical AND | ✅ Working |
 | `o` | `or` | Logical OR | ✅ Working |
 | `veru` | `true` | Boolean true | ✅ Working |
 | `falsu` | `false` | Boolean false | ✅ Working |
 | `nenti` | `nil` | Null/nil value | ✅ Working |
+| `funzioni` | `fun` | Function definition | ✅ Working |
+| `ritorna` | `return` | Return statement | ✅ Working |
 | `pi` | `for` | For loop | ⏳ Not yet |
-| `funzioni` | `fun` | Function definition | ⏳ Not yet |
-| `ritorna` | `return` | Return statement | ⏳ Not yet |
 | `classi` | `class` | Class definition | ⏳ Not yet |
 | `chistu` | `this` | This reference | ⏳ Not yet |
 | `supiru` | `super` | Superclass reference | ⏳ Not yet |
@@ -94,6 +94,72 @@ java -cp target/mbare-1.0-SNAPSHOT.jar com.bezkup.mbare.Mbare yourfile.mbare
 ```
 
 ## Examples
+
+### Functions with Multiple Parameters
+
+```javascript
+// Define a function with 2 parameters
+funzioni somma(a, b) {
+    ritorna a + b
+}
+
+stampa somma(5, 3)  // 8
+
+// Functions with 3 or more parameters
+funzioni somma3(a, b, c) {
+    ritorna a + b + c
+}
+
+stampa somma3(1, 2, 3)  // 6
+```
+
+### Recursion - Factorial
+
+```javascript
+// Classic factorial using recursion
+funzioni fattoriali(n) {
+    su (n <= 1) {
+        ritorna 1
+    }
+    ritorna n * fattoriali(n - 1)
+}
+
+stampa fattoriali(5)   // 120
+stampa fattoriali(10)  // 3628800
+```
+
+### Recursion - Fibonacci
+
+```javascript
+// Recursive fibonacci
+funzioni fib(n) {
+    su (n <= 1) {
+        ritorna n
+    }
+    ritorna fib(n - 1) + fib(n - 2)
+}
+
+stampa fib(0)  // 0
+stampa fib(1)  // 1
+stampa fib(10) // 55
+```
+
+### Closures and Higher-Order Functions
+
+```javascript
+// Function returning a function
+funzioni multiplier(factor) {
+    funzioni multiply(n) {
+        ritorna n * factor
+    }
+    ritorna multiply
+}
+
+variabbili double = multiplier(2)
+variabbili triple = multiplier(3)
+stampa double(5)  // 10
+stampa triple(5)  // 15
+```
 
 ### Variables and Print
 

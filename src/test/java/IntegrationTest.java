@@ -279,7 +279,7 @@ class IntegrationTest {
             stampa x == y
             
             // Logical operators
-            stampa veru e falsu
+            stampa veru e macari falsu
             stampa veru o falsu
             stampa !falsu
             
@@ -310,6 +310,255 @@ class IntegrationTest {
         assertTrue(output.contains("1"));
         assertTrue(output.contains("2"));
         assertTrue(output.contains("=== Demo Complete ==="));
+    }
+
+    @Test
+    @DisplayName("Functions: Simple function with no parameters")
+    void testSimpleFunctionNoParams() {
+        String source = """
+            funzioni greet() {
+                stampa "Ciao!"
+            }
+            greet()
+            """;
+        runCode(source);
+        assertEquals("Ciao!", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Function with single parameter")
+    void testFunctionWithSingleParam() {
+        String source = """
+            funzioni double(n) {
+                ritorna n * 2
+            }
+            stampa double(5)
+            """;
+        runCode(source);
+        assertEquals("10", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Function with multiple parameters")
+    void testFunctionWithMultipleParams() {
+        String source = """
+            funzioni add(a, b) {
+                ritorna a + b
+            }
+            stampa add(3, 7)
+            """;
+        runCode(source);
+        assertEquals("10", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Function with 5 parameters using 'e' as parameter name")
+    void testFunctionWithFiveParams() {
+        String source = """
+            funzioni sum5(a, b, c, d, e) {
+                ritorna a + b + c + d + e
+            }
+            stampa sum5(1, 2, 3, 4, 5)
+            """;
+        runCode(source);
+        assertEquals("15", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Recursion - Factorial")
+    void testRecursionFactorial() {
+        String source = """
+            funzioni factorial(n) {
+                su (n <= 1) {
+                    ritorna 1
+                }
+                ritorna n * factorial(n - 1)
+            }
+            stampa factorial(5)
+            """;
+        runCode(source);
+        assertEquals("120", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Recursion - Fibonacci")
+    void testRecursionFibonacci() {
+        String source = """
+            funzioni fib(n) {
+                su (n <= 1) {
+                    ritorna n
+                }
+                ritorna fib(n - 1) + fib(n - 2)
+            }
+            stampa fib(6)
+            """;
+        runCode(source);
+        assertEquals("8", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Mutual recursion - isEven/isOdd")
+    void testMutualRecursion() {
+        String source = """
+            funzioni isEven(n) {
+                su (n == 0) {
+                    ritorna veru
+                }
+                ritorna isOdd(n - 1)
+            }
+            
+            funzioni isOdd(n) {
+                su (n == 0) {
+                    ritorna falsu
+                }
+                ritorna isEven(n - 1)
+            }
+            
+            stampa isEven(4)
+            stampa isOdd(4)
+            stampa isEven(7)
+            stampa isOdd(7)
+            """;
+        runCode(source);
+        String expected = String.join("\n", "true", "false", "false", "true");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Closure - Counter")
+    void testClosure() {
+        String source = """
+            funzioni makeCounter() {
+                variabbili count = 0
+                funzioni increment() {
+                    count = count + 1
+                    ritorna count
+                }
+                ritorna increment
+            }
+            
+            variabbili counter = makeCounter()
+            stampa counter()
+            stampa counter()
+            stampa counter()
+            """;
+        runCode(source);
+        String expected = String.join("\n", "1", "2", "3");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Multiple independent closures")
+    void testMultipleClosures() {
+        String source = """
+            funzioni makeCounter() {
+                variabbili count = 0
+                funzioni increment() {
+                    count = count + 1
+                    ritorna count
+                }
+                ritorna increment
+            }
+            
+            variabbili counter1 = makeCounter()
+            variabbili counter2 = makeCounter()
+            stampa counter1()
+            stampa counter1()
+            stampa counter2()
+            stampa counter1()
+            """;
+        runCode(source);
+        String expected = String.join("\n", "1", "2", "1", "3");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Higher-order function - multiplier")
+    void testHigherOrderFunction() {
+        String source = """
+            funzioni makeMultiplier(factor) {
+                funzioni multiply(n) {
+                    ritorna n * factor
+                }
+                ritorna multiply
+            }
+            
+            variabbili triple = makeMultiplier(3)
+            variabbili double = makeMultiplier(2)
+            stampa triple(5)
+            stampa double(5)
+            """;
+        runCode(source);
+        String expected = String.join("\n", "15", "10");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: GCD using recursion")
+    void testGCD() {
+        String source = """
+            funzioni gcd(a, b) {
+                su (b == 0) {
+                    ritorna a
+                }
+                ritorna gcd(b, a - (a / b) * b)
+            }
+            stampa gcd(48, 18)
+            stampa gcd(100, 35)
+            """;
+        runCode(source);
+        String expected = String.join("\n", "18", "35");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Return without value")
+    void testReturnWithoutValue() {
+        String source = """
+            funzioni test(n) {
+                su (n > 0) {
+                    stampa "Positive"
+                    ritorna
+                }
+                stampa "Not positive"
+            }
+            test(5)
+            test(-3)
+            """;
+        runCode(source);
+        String expected = String.join("\n", "Positive", "Not positive");
+        assertEquals(expected, getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Nested function calls")
+    void testNestedFunctionCalls() {
+        String source = """
+            funzioni add(a, b) {
+                ritorna a + b
+            }
+            funzioni multiply(a, b) {
+                ritorna a * b
+            }
+            stampa multiply(add(2, 3), add(4, 6))
+            """;
+        runCode(source);
+        assertEquals("50", getOutput());
+    }
+
+    @Test
+    @DisplayName("Functions: Function with logical operators using 'e macari'")
+    void testFunctionWithLogicalOperators() {
+        String source = """
+            funzioni allPositive(a, b, c) {
+                ritorna a > 0 e macari b > 0 e macari c > 0
+            }
+            stampa allPositive(1, 2, 3)
+            stampa allPositive(1, -2, 3)
+            """;
+        runCode(source);
+        String expected = String.join("\n", "true", "false");
+        assertEquals(expected, getOutput());
     }
 }
 

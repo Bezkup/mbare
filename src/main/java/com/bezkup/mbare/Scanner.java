@@ -15,7 +15,7 @@ public class Scanner {
 
     static {
         keywords = new HashMap<>();
-        keywords.put("e", TokenType.AND);
+        keywords.put("macari", TokenType.AND);
         keywords.put("classi", TokenType.CLASS);
         keywords.put("sannunca", TokenType.ELSE);
         keywords.put("falsu", TokenType.FALSE);
@@ -149,6 +149,36 @@ public class Scanner {
         while (isAlphaNumeric(peek()))
             advance();
         String text = source.substring(start, current);
+
+        // Check for two-word keywords like "e macari"
+        if (text.equals("e")) {
+            // Save the current position
+            int savedCurrent = current;
+            int savedStart = start;
+
+            // Skip whitespace
+            while (peek() == ' ' || peek() == '\t')
+                advance();
+
+            // Check if next word is "macari"
+            if (isAlpha(peek())) {
+                int wordStart = current;
+                while (isAlphaNumeric(peek()))
+                    advance();
+                String nextWord = source.substring(wordStart, current);
+
+                if (nextWord.equals("macari")) {
+                    // Found "e macari" - emit AND token
+                    addToken(TokenType.AND);
+                    return;
+                }
+            }
+
+            // Not "e macari", restore position and treat "e" as identifier
+            current = savedCurrent;
+            text = source.substring(savedStart, current);
+        }
+
         TokenType type = keywords.get(text);
         if (type == null)
             type = TokenType.IDENTIFIER;

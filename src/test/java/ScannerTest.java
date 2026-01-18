@@ -92,7 +92,7 @@ public class ScannerTest {
     @Test
     @DisplayName("Sicilian keywords are recognized correctly")
     public void scanTokens_withSicilianKeywords_returnsKeywordTokens() {
-        Scanner scanner = new Scanner("variabbili stampa su sannunca mentri veru falsu nenti e o");
+        Scanner scanner = new Scanner("variabbili stampa su sannunca mentri veru falsu nenti e macari o");
         List<Token> tokens = scanner.scanTokens();
         assertEquals(11, tokens.size()); // 10 keywords + EOF
         assertEquals(TokenType.VAR, tokens.get(0).type);
